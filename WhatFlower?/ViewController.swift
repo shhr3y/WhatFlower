@@ -9,31 +9,37 @@
 import UIKit
 import CoreML
 import Vision
+import Alamofire
+import SwiftyJSON
+import SDWebImage
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let imagePicker = UIImagePickerController()
+    let wikipediaURl = "https://en.wikipedia.org/w/api.php"
+
 
     @IBOutlet var imageView: UIImageView!
-        
+    @IBOutlet var textView: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.x
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        imagePicker.sourceType = .camera
+        imagePicker.sourceType = .photoLibrary
         
         
         imageView.contentMode = .scaleAspectFill
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-        imageView.image = userPickedImage
-        
-        guard let ciimage = CIImage(image: userPickedImage) else {
-            fatalError("Could not Convert UIImage to CIImage")
+        if let userPickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            imageView.image = userPickedImage
+            
+            guard let ciimage = CIImage(image: userPickedImage) else {
+                fatalError("Could not Convert UIImage to CIImage")
             }
             detect(image: ciimage)
         }
@@ -43,6 +49,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    func requestInfo(flowerName: String){
+        
+        let parameters : [String:String] = [
+            "format" : "json",
+            "action" : "query",
+            "prop" : "extracts|pageimages",
+            "exintro" : "",
+            "explaintext" : "",
+            "titles" : flowerName,
+            "indexpageids" : "",
+            "redirects" : "1",
+            "pithumbsize": "500"
+        ]
+        
+        Alamofire.request(wikipediaURl, method: .get, parameters: parameters).responseJSON { (response) in
+            if(response.result.isSuccess) {
+                print(response)
+                
+                let flowerJSON : JSON = JSON(response.result.value!)
+                let pageID = flowerJSON["query"]["pageids"][0].stringValue
+                
+                let flowerDescription = flowerJSON["query"]["pages"][pageID]["extract"].stringValue
+                self.textView.text = flowerDescription
+                
+                let flowerImageURL = flowerJSON["query"]["pages"][pageID]["thumbnail"]["source"].stringValue
+                self.imageView.sd_setImage(with: URL(string: flowerImageURL))
+                print(flowerImageURL)
+            }
+            
+        }
+        
+
+    }
+    
+    
+    
     
     func detect(image: CIImage){
         guard let model = try? VNCoreMLModel(for: FlowerClassifier().model) else {
@@ -54,6 +97,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
             if let object = result.first{
                 self.navigationItem.title = "\(object.identifier.capitalized) \(String(format: "%.2f", object.confidence*100))"
+                self.requestInfo(flowerName: object.identifier)
             }
         }
         

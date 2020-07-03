@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,7 @@
 		35B8004024AED0720058078B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B8003E24AED0720058078B /* Main.storyboard */; };
 		35B8004224AED0740058078B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B8004124AED0740058078B /* Assets.xcassets */; };
 		35B8004524AED0740058078B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B8004324AED0740058078B /* LaunchScreen.storyboard */; };
-		35B8004D24AEDC160058078B /* FlowerClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 35B8004C24AEDC160058078B /* FlowerClassifier.mlmodel */; };
+		35B8004F24AF0D5D0058078B /* FlowerClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 35B8004E24AF0D5D0058078B /* FlowerClassifier.mlmodel */; };
 		9E52A85F60B05ACA6D3477B9 /* Pods_WhatFlower_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D5618DBABE8D2134DBAA8B /* Pods_WhatFlower_.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +27,7 @@
 		35B8004124AED0740058078B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35B8004424AED0740058078B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35B8004624AED0740058078B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		35B8004C24AEDC160058078B /* FlowerClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FlowerClassifier.mlmodel; sourceTree = "<group>"; };
+		35B8004E24AF0D5D0058078B /* FlowerClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FlowerClassifier.mlmodel; sourceTree = "<group>"; };
 		C1CA02BDEE7B112F840908C8 /* Pods-WhatFlower?.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatFlower?.debug.xcconfig"; path = "Target Support Files/Pods-WhatFlower?/Pods-WhatFlower?.debug.xcconfig"; sourceTree = "<group>"; };
 		CD81F87EFDBFC895C06E7AF1 /* Pods-WhatFlower?.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatFlower?.release.xcconfig"; path = "Target Support Files/Pods-WhatFlower?/Pods-WhatFlower?.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,7 +69,7 @@
 				35B8003A24AED0720058078B /* SceneDelegate.swift */,
 				35B8003C24AED0720058078B /* ViewController.swift */,
 				35B8003E24AED0720058078B /* Main.storyboard */,
-				35B8004C24AEDC160058078B /* FlowerClassifier.mlmodel */,
+				35B8004E24AF0D5D0058078B /* FlowerClassifier.mlmodel */,
 				35B8004124AED0740058078B /* Assets.xcassets */,
 				35B8004324AED0740058078B /* LaunchScreen.storyboard */,
 				35B8004624AED0740058078B /* Info.plist */,
@@ -83,7 +83,6 @@
 				C1CA02BDEE7B112F840908C8 /* Pods-WhatFlower?.debug.xcconfig */,
 				CD81F87EFDBFC895C06E7AF1 /* Pods-WhatFlower?.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -210,7 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35B8004D24AEDC160058078B /* FlowerClassifier.mlmodel in Sources */,
+				35B8004F24AF0D5D0058078B /* FlowerClassifier.mlmodel in Sources */,
 				35B8003D24AED0720058078B /* ViewController.swift in Sources */,
 				35B8003924AED0720058078B /* AppDelegate.swift in Sources */,
 				35B8003B24AED0720058078B /* SceneDelegate.swift in Sources */,
